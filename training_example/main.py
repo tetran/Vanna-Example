@@ -29,6 +29,12 @@ def train():
         vn.train(ddl=sql)
 
 
+def trainint_data():
+    vn = connect_vn()
+    training_data = vn.get_training_data()
+    return training_data
+
+
 def ask(question):
     print("******** Asking question: ", question)
     vn = connect_vn()
@@ -45,6 +51,8 @@ if __name__ == "__main__":
         train()
     elif sys.argv[1] == "ask":
         print(ask(sys.argv[2]))
+    elif sys.argv[1] == "training_data":
+        print(trainint_data())
     else:
         print("invalid argument. please specify `train` or `ask`.")
         sys.exit(1)
