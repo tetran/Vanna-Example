@@ -1,6 +1,7 @@
 import os, sys
 from vanna.openai.openai_chat import OpenAI_Chat
 from vanna.chromadb.chromadb_vector import ChromaDB_VectorStore
+from vanna.flask import VannaFlaskApp
 
 
 class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
@@ -41,10 +42,15 @@ def ask(question):
     return vn.ask(question=question)
 
 
-# 実行時引数でtrainかaskを指定
+def launch_ui():
+    vn = connect_vn()
+    app = VannaFlaskApp(vn)
+    app.run()
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("invalid argument. please specify `train` or `ask`.")
+        print("argument required. please specify [train|ask|training_data|ui].")
         sys.exit(1)
 
     if sys.argv[1] == "train":
@@ -53,6 +59,8 @@ if __name__ == "__main__":
         print(ask(sys.argv[2]))
     elif sys.argv[1] == "training_data":
         print(trainint_data())
+    elif sys.argv[1] == "ui":
+        launch_ui()
     else:
-        print("invalid argument. please specify `train` or `ask`.")
+        print("invalid argument. please specify [train|ask|training_data|ui].")
         sys.exit(1)

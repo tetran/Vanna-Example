@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
 vanna = {extras = ["chromadb", "openai"], version = "*"}
 
 [dev-packages]

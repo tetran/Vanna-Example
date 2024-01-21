@@ -32,8 +32,13 @@ pipenv run python get_started.py
 ### Example 2: Training Example
 ```bash
 cd training_example
-# Train the model
+
+# First, train the model
 pipenv run python main.py train
-# Ask the model a question
-pipenv run python main.py ask "What are the top 5 artists by sales?"
+
+# Then, ask the model a question. e.g. "What are the top 5 artists by sales?"
+pipenv run python main.py ask "[QUESTION]"
+
+# Or launch UI
+pipenv run python main.py ui
 ```
